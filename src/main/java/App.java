@@ -1,5 +1,6 @@
 public class App {
     public static void main(String[] args) {
-        System.out.println("1");
+        int i = 20;
+        System.out.println(i);
     }
 }
