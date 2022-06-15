@@ -16,9 +16,7 @@ public class App {
         david.setLastName("Peterson");
         david.setYear(2000);
 
-        Person stive = new Person("Stive", "Jakson", 2001);
-
-        Person jane = new Person(("Jane", "Dow");
+        Person jane = new Person("Jane", "Dow");
         jane.setYear(2005);
     }
 }

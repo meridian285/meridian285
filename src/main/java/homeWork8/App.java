@@ -18,25 +18,26 @@ public class App {
         greg.year = 2001;
 
         Clothes dress = new Clothes();
-        dress.color = "Red";
+        dress.setColor(Colors.Green);
         dress.size = "XL";
-        dress.seasonClothes = Season.Summer;
+        dress.setSeasonClothes(Season.Summer);
 
         Clothes costume = new Clothes();
-        costume.color = "Black";
+        costume.setColor(Colors.Black);
         costume.size = "XXL";
-        costume.seasonClothes = Season.Winter;
+        costume.setSeasonClothes(Season.Winter);
 
         Clothes shirt = new Clothes();
-        shirt.color = "Blue";
+        shirt.setColor(Colors.White);
         shirt.size = "LL";
-        shirt.seasonClothes = Season.Summer;
+        shirt.setSeasonClothes(Season.Summer);
 
-        System.out.println(alex+" like "+shirt+" ");
+//        System.out.println(alex+" like "+shirt+" ");
 
 
-        System.out.println(dress.seasonClothes);
+//        System.out.println(dress.getSeasonClothes());
 
+        
 
 
     }

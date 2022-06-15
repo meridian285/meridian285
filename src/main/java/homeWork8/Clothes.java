@@ -1,11 +1,11 @@
 package homeWork8;
 
 public class Clothes {
-        private String color;
-        private String size;
-        private  String seasonClothes;
+        private Colors color;
+        protected String size;
+        private String seasonClothes;
 
-        public Clothes(String color, String size, String seasonClothes){
+        public Clothes(Colors color, String size, String seasonClothes){
                 this.color = color;
                 this.size = size;
                 this.seasonClothes = seasonClothes;
@@ -19,7 +19,7 @@ public class Clothes {
         public void setColor(Colors color){
                 this.color = color;
         }
-        public String getColor(){
+        public Colors getColor(){
                 return color;
         }
         public void setSeasonClothes(Season season){
@@ -29,5 +29,7 @@ public class Clothes {
                 return seasonClothes;
         }
 
-
+        public void buyCloth(){
+                System.out.println(Colors.Blue+" "+Season.Summer+" "+size);
+        }
 }

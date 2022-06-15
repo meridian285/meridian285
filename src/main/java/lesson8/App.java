@@ -33,7 +33,7 @@ public class App {
         myFriendsCar.make = "Toyota";
         myFriendsCar.color = "Silver";
 
-//        myCar.start();
+        myCar.start();
 //        myFriendsCar.start();
 //
 //        myCar.beep();
