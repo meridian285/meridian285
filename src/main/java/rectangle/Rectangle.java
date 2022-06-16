@@ -19,6 +19,7 @@ public class Rectangle {
         return length+width;
      }
      public void draw(){
-         System.out.println("I draw a red rectangle with width = "+width+", length = "+length);
+         System.out.println("I draw a red rectangle with width = "+width+", length = "+length+".");
      }
+
 }
