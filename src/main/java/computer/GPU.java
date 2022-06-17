@@ -3,14 +3,10 @@ package computer;
 public class GPU {
     private GPUmake gpUmake;
     private int memorySize;
-    private String make;
-    private String model;
 
-    public GPU(GPUmake gpUmake, int memorySize, String make, String model) {
+    public GPU(GPUmake gpUmake, int memorySize) {
         this.gpUmake = gpUmake;
         this.memorySize = memorySize;
-        this.make = make;
-        this.model = model;
     }
 
     public GPUmake getGpUmake() {
@@ -29,19 +25,11 @@ public class GPU {
         this.memorySize = memorySize;
     }
 
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    @Override
+    public String toString() {
+        return "GPU{" +
+                "gpUmake=" + gpUmake +
+                ", memorySize=" + memorySize +
+                '}';
     }
 }

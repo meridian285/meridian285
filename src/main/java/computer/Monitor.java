@@ -44,4 +44,14 @@ public class Monitor {
     public void setMatrixType(MatrixType matrixType) {
         this.matrixType = matrixType;
     }
+
+    @Override
+    public String toString() {
+        return "Monitor{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", diagonal='" + diagonal + '\'' +
+                ", matrixType=" + matrixType +
+                '}';
+    }
 }

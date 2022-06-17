@@ -24,4 +24,12 @@ public class Case {
     public void setModel(String model) {
         this.model = model;
     }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+                "make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                '}';
+    }
 }
