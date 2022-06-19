@@ -11,6 +11,9 @@ public class App {
         colors.add("Pink");
         colors.add("Green");
         System.out.println(colors);
+
         System.out.println(colors.contains("Red"));
+        System.out.println(colors.contains("1"));
+
     }
 }
