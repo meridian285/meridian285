@@ -60,7 +60,7 @@ public class KoelLogin {
         By textFolderNewPlaylistLocator = By.xpath("//*[@placeholder='↵ to save']");
         WebElement textFolderNewPlaylist = driver.findElement(textFolderNewPlaylistLocator);
         textFolderNewPlaylist.sendKeys("PlayList123123");
-
+        driver.findElement(By.xpath("//*[@placeholder='↵ to save']")).sendKeys(Keys.ENTER);
 
         Thread.sleep(3000);
 
