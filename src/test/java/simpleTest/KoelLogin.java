@@ -1,29 +1,41 @@
 package simpleTest;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class KoelLogin {
     private WebDriver driver;
+    private WebDriverWait wait;
+    private FluentWait<WebDriver> fluentWait;
 
     @BeforeMethod
     public void startBeforeEveryTest(){
         System.setProperty("webdriver.chome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver,10,200);
+//        fluentWait = new FluentWait<>(driver.)
+//                .pollingEvery(Duration.ofMillis(200))
+//                .withTimeout(Duration.ofSeconds(10))
+//                .ignoring(NoSuchElementException.class)
+//                .ignoring(ElementClickInterceptedException.class)
+//                .ignoring(StaleElementReferenceException.class);
         driver.get("https://bbb.testpro.io");
     }
     @AfterMethod
     public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
         driver.quit();
     }
 
@@ -42,14 +54,16 @@ public class KoelLogin {
         loginButton.click();
 
 
-
-        Thread.sleep(3000);
         By homeIconLocator = By.className("home");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(homeIconLocator));
         WebElement homeIcon = driver.findElement(homeIconLocator);
 
         Assert.assertTrue(homeIcon.isDisplayed());
 
-        By circlePlaylistCreatLocator = By.xpath("//*[@class='fa fa-plus-circle create']");
+        Thread.sleep(1000);
+
+        By circlePlaylistCreatLocator = By.xpath("//*[@title='Create a new playlist']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(circlePlaylistCreatLocator));
         WebElement circlePlaylistCreat = driver.findElement(circlePlaylistCreatLocator);
         circlePlaylistCreat.click();
 
@@ -62,32 +76,40 @@ public class KoelLogin {
         textFolderNewPlaylist.sendKeys("PlayList123123");
         driver.findElement(By.xpath("//*[@placeholder='↵ to save']")).sendKeys(Keys.ENTER);
 
-        Thread.sleep(3000);
-
-
     }
 
-//    @Test
-//    public void loginToKoel_incorrectLogin() throws InterruptedException {
-//        By emailLoginField = By.xpath("//*[@type='email']");
-//        WebElement emailField = driver.findElement(emailLoginField);
-//        emailField.sendKeys("akelizarovav@gmail.com");
-//
-//        By emailPasswordField = By.cssSelector("[type='password']");
-//        WebElement emailPassword = driver.findElement(emailPasswordField);
-//        emailPassword.sendKeys("wrongPassword");
-//
-//        By loginButtonLocator = By.tagName("button");
-//        WebElement loginButton = driver.findElement(loginButtonLocator);
-//        loginButton.click();
-//
-//        Thread.sleep(300);
-//
-//        By errorFrameLocator = By.className("error");
+    @Test
+    public void loginToKoel_incorrectLogin() throws InterruptedException {
+        By emailLoginField = By.xpath("//*[@type='email']");
+        WebElement emailField = driver.findElement(emailLoginField);
+        emailField.sendKeys("akelizarovav@gmail.com");
+
+        By emailPasswordField = By.cssSelector("[type='password']");
+        WebElement emailPassword = driver.findElement(emailPasswordField);
+        emailPassword.sendKeys("wrongPassword");
+
+        By loginButtonLocator = By.tagName("button");
+        WebElement loginButton = driver.findElement(loginButtonLocator);
+        loginButton.click();
+
+
+        By errorFrameLocator = By.className("error");
+        for (int i = 0; i<50;i++)
+            try {
+                driver.findElement(errorFrameLocator);
+                break;
+            }catch (NoSuchElementException err){
+                try{
+                    Thread.sleep(200);
+                }catch (InterruptedException e){}
+            }
 //        WebElement errorFrame = driver.findElement(errorFrameLocator);
 //
 //        Assert.assertTrue(errorFrame.isDisplayed());
-//    }
+
+
+
+    }
 
 
 
