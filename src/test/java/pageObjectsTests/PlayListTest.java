@@ -2,9 +2,12 @@ package pageObjectsTests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageObjects.LoginPage;
+import pageObjects.MainPage;
 
 public class PlayListTest {
     private WebDriver driver;
@@ -24,7 +27,13 @@ public class PlayListTest {
     }
 
     @Test
-    public void playListTest_create_playList_playListCreated(){
-
+    public void playListTest_create_playList_playListCreated() throws InterruptedException {
+        String playListName = "myFirstPlayList";
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigate(url);
+        MainPage mainPage = loginPage.loginToApp("akelizarovav@gmail.com","te$t$tudent");
+//        Thread.sleep(2000);
+        mainPage.createPlaylist(playListName);
+        Assert.assertTrue(mainPage.isMainPage());
     }
 }

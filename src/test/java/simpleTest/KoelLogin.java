@@ -62,7 +62,7 @@ public class KoelLogin {
 
         Thread.sleep(1000);
 
-        By circlePlaylistCreatLocator = By.xpath("//*[@title='Create a new playlist']");
+        By circlePlaylistCreatLocator = By.xpath("//*[@class='fa fa-plus-circle create']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(circlePlaylistCreatLocator));
         WebElement circlePlaylistCreat = driver.findElement(circlePlaylistCreatLocator);
         circlePlaylistCreat.click();
