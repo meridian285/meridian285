@@ -13,7 +13,7 @@ public class MainPage {
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,5,300);
+        wait = new WebDriverWait(driver,5,200);
     }
 
     public boolean isMainPage() {
@@ -27,13 +27,13 @@ public class MainPage {
     }
 
     private WebElement getCirclePlaylistCreat(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='fa fa-plus-circle create']")));
         By circlePlaylistCreatLocator = By.xpath("//*[@class='fa fa-plus-circle create']");
+        wait.until(ExpectedConditions.elementToBeClickable(circlePlaylistCreatLocator));
         return driver.findElement(circlePlaylistCreatLocator);
     }
     private WebElement getDropDownMenuNewPlaylist(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='New Playlist']")));
         By dropDownMenuLocator = By.xpath("//*[text()='New Playlist']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dropDownMenuLocator));
         return driver.findElement(dropDownMenuLocator);
     }
     private WebElement getTextFolderNewPlaylist(){
@@ -45,6 +45,11 @@ public class MainPage {
         getDropDownMenuNewPlaylist().click();
         getTextFolderNewPlaylist().sendKeys(playListName);
         getTextFolderNewPlaylist().sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='success show']")));
+        String url = driver.getCurrentUrl();
+        String[] parts = url.split("/");
+
+        System.out.println(parts[5]);
     }
 
 
