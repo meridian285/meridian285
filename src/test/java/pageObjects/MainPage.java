@@ -55,7 +55,7 @@ public class MainPage extends BasePage{
     }
 
     public void renamePlaylist(String playlistID, String newName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@href='#!/playlist/" + playlistID + "']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='success show']")));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //specify the WebElement till which the page has to be scrolled
         WebElement element = driver.findElement(By.linkText("//*[@href='#!/playlist/"+playlistID+"']"));
