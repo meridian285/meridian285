@@ -45,7 +45,6 @@ public class MainPage extends BasePage{
         return driver.findElement(By.xpath("//*[@href='#!/playlist/"+playlistID+"']"));
     }
 
-
     public boolean checkPlaylist(String playlistID, String playlistName) {
         try {
             return getPlayList(playlistID).isDisplayed() && getPlayList(playlistID).getText().equals(playlistName);
@@ -54,19 +53,27 @@ public class MainPage extends BasePage{
         }
     }
 
-    public void renamePlaylist(String playlistID, String newName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='success show']")));
+    public void renamePlaylist(String playlistID, String newName) throws InterruptedException {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@class='success show']")));
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        //specify the WebElement till which the page has to be scrolled
-        WebElement element = driver.findElement(By.linkText("//*[@href='#!/playlist/"+playlistID+"']"));
-        js.executeScript("arguments[0].scrollIntoView();", element);
+        js.executeScript("window.scrollBy(0,2500)", "//*[@href='#!/playlist/" + playlistID + "']");
 
         //Instantiating Actions class
         Actions act = new Actions(driver);
+        Actions actTxt = new Actions(driver);
+        WebElement txtElement = driver.findElement(By.xpath("//*[@href='#!/playlist/" + playlistID + "']/text()"));
         //Locate WebElement to perform double click
         WebElement btnElement = driver.findElement(By.xpath("//*[@href='#!/playlist/" + playlistID + "']"));
         act.doubleClick(btnElement).perform();
+        System.out.println(playlistID);
+        actTxt.doubleClick(txtElement);
 
+//        getPlayList(playlistID).sendKeys(Keys.CONTROL+"a");
+        System.out.println(playlistID);
+        Thread.sleep(3000);
+//        getPlayList(playlistID).sendKeys("44444444444444444444");
+//        getPlayList(playlistID).sendKeys(Keys.ENTER);
 
     }
 }
