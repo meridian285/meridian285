@@ -52,28 +52,27 @@ public class MainPage extends BasePage{
             return false;
         }
     }
+    private WebElement getEditField(){
+        By editFieldLocator = By.xpath("//*[@class='playlist playlist editing']/input");
+        wait.until(ExpectedConditions.elementToBeClickable(editFieldLocator));
+        return driver.findElement(editFieldLocator);
+    }
 
-    public void renamePlaylist(String playlistID, String newName) throws InterruptedException {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@class='success show']")));
+    public void renamePlaylist(String playlistID, String newName) {
+        WebElement playlist = getPlayList(playlistID);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,2500)", "//*[@href='#!/playlist/" + playlistID + "']");
+        js.executeScript("arguments[0].scrollIntoView();", playlist);
 
-        //Instantiating Actions class
         Actions act = new Actions(driver);
-        Actions actTxt = new Actions(driver);
-        WebElement txtElement = driver.findElement(By.xpath("//*[@href='#!/playlist/" + playlistID + "']/text()"));
-        //Locate WebElement to perform double click
-        WebElement btnElement = driver.findElement(By.xpath("//*[@href='#!/playlist/" + playlistID + "']"));
-        act.doubleClick(btnElement).perform();
-        System.out.println(playlistID);
-        actTxt.doubleClick(txtElement);
+        act.doubleClick(playlist).perform();
+        getEditField().sendKeys(Keys.CONTROL+"A");
+        getEditField().sendKeys(newName);
+        getEditField().sendKeys(Keys.ENTER);
 
-//        getPlayList(playlistID).sendKeys(Keys.CONTROL+"a");
-        System.out.println(playlistID);
-        Thread.sleep(3000);
-//        getPlayList(playlistID).sendKeys("44444444444444444444");
-//        getPlayList(playlistID).sendKeys(Keys.ENTER);
+        By secondGreenLocator = By.xpath("//*[@class='success show' and contains (text(), '"+newName+"')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(secondGreenLocator));
+
 
     }
 }
