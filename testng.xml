@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Master suite">
+    <test name="Selenium tests">
+        <classes>
+            <class name="pageObjectsTests.LoginTest">
+                <methods>
+                    <include name="loginTest_correct_credentials_loggedToApp"/>
+                    <include name="loginTest_incorrect_credentials_loggedToApp"/>
+                </methods>
+            </class>
+            <class name="pageObjectsTests.PlayListTest">
+                <methods>
+                    <include name="playListTest_create_playList_playListCreated"/>
+                    <include name="playListTest_renameplayList_playlistRenamed"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
